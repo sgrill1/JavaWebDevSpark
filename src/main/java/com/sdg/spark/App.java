@@ -1,5 +1,6 @@
 package com.sdg.spark;
 
+import com.sdg.spark.model.CourseIdea;
 import com.sdg.spark.model.CourseIdeaDAO;
 import com.sdg.spark.model.SimpleCourseIdeaDAO;
 import spark.ModelAndView;
@@ -33,5 +34,21 @@ public class App
             model.put("username", username);
             return new ModelAndView(model, "sign-in.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/ideas", (req,res) -> {
+            Map<String,Object> model = new HashMap<>();
+            model.put("ideas", dao.findALL());
+            return new ModelAndView(model,"ideas.hbs");
+        },new HandlebarsTemplateEngine());
+
+        post("/ideas", (req,res) ->{
+            String title = req.queryParams("title");
+
+            //This username is tied to the cookie
+            CourseIdea courseIdea = new CourseIdea(title, req.cookie("username"));
+            dao.add(courseIdea);
+            res.redirect("/ideas");
+            return null; //hmmm
+        });
     }
 }
