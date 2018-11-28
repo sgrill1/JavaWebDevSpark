@@ -1,10 +1,16 @@
 package com.sdg.spark;
 
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
-public class App 
+import static spark.Spark.get;
+
+public class App
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main( String[] args ) {
+
+        get("/", (req,res) -> {
+            return new ModelAndView(null, "templates/index.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
