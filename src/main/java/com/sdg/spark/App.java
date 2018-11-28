@@ -10,7 +10,7 @@ public class App
     public static void main( String[] args ) {
 
         get("/", (req,res) -> {
-            return new ModelAndView(null, "templates/index.hbs");
+            return new ModelAndView(null, "index.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }
