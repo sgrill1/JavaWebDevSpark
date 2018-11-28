@@ -8,12 +8,15 @@
     <title>Hello</title>
 </head>
 <body>
-<h1>Welcome To My First Java Site</h1>
 
-<form action="/sign-in" method="post">
-    <input type="text" placeholder="What's your user name?" name="username">
-    <button>Sign-In</button>
-    <!-- add sign in page -->
+{{#if username}}
+    <h1>Welcome {{username}} To Your First Java Site</h1>
+{{else}}
+    <h1>Welcome To My First Java Site</h1>
+    <form action="/sign-in" method="post">
+        <input type="text" placeholder="What's your user name?" name="username">
+        <button>Sign-In</button>
+{{/if}}
 </form>
 </body>
 </html>
