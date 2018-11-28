@@ -12,3 +12,4 @@ Use the HandleBars Template to build an index page with:
 * An Index Page
 * A submit form and button
 * A dynamic sign-in page
+* Cookies to store the username in memory
