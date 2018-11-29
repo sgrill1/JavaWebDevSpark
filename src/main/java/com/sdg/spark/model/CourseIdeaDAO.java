@@ -7,4 +7,7 @@ public interface CourseIdeaDAO {
     boolean add(CourseIdea idea);
 
     List<CourseIdea> findALL();
+
+    CourseIdea findBySlug(String slug);
+
 }

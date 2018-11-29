@@ -1,14 +1,19 @@
 package com.sdg.spark.model;
 
+import com.github.slugify.Slugify;
+
 import java.util.Objects;
 
 public class CourseIdea {
+    private String slug;
     private String title;
     private String creator;
 
     public CourseIdea(String title, String creator) {
         this.title = title;
         this.creator = creator;
+        Slugify slugify = new Slugify();
+        slug = slugify.slugify(title);
     }
 
 
@@ -22,6 +27,9 @@ public class CourseIdea {
         return creator;
     }
 
+    public String getSlug() {
+        return slug;
+    }
 
     //Equals and Override
     @Override
