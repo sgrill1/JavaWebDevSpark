@@ -9,9 +9,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import java.util.HashMap;
 import java.util.Map;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.staticFileLocation;
+import static spark.Spark.*;
 
 public class App
 {
@@ -19,6 +17,19 @@ public class App
         staticFileLocation("/public");
         CourseIdeaDAO dao = new SimpleCourseIdeaDAO(); //PROTOTYPE: WOULD USUALLY USE A DATABASE
 
+        before((req,res) -> {
+            if (req.cookie("username") != null){
+                req.attribute("username", req.cookie("username"));
+            }
+        });
+
+        before("/ideas", (req,res) -> {
+            //TODO:sdg - send message about the redirect
+            if(req.attribute("username") == null){
+                res.redirect("/");
+                halt();
+            }
+        });
 
         get("/", (req,res) -> {
             Map<String, String> model = new HashMap<>();
@@ -30,10 +41,9 @@ public class App
             Map<String, String> model = new HashMap<>();
             String username = req.queryParams("username");
             res.cookie("username", username);
-
-            model.put("username", username);
-            return new ModelAndView(model, "sign-in.hbs");
-        }, new HandlebarsTemplateEngine());
+            res.redirect("/");
+            return null; //hmmm
+        });
 
         get("/ideas", (req,res) -> {
             Map<String,Object> model = new HashMap<>();
@@ -43,9 +53,7 @@ public class App
 
         post("/ideas", (req,res) ->{
             String title = req.queryParams("title");
-
-            //This username is tied to the cookie
-            CourseIdea courseIdea = new CourseIdea(title, req.cookie("username"));
+            CourseIdea courseIdea = new CourseIdea(title, req.attribute("username"));
             dao.add(courseIdea);
             res.redirect("/ideas");
             return null; //hmmm
