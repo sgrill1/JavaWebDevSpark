@@ -17,4 +17,4 @@ Use the HandleBars Template to build a simple website with:
 * A Base.hbs that index and sign-in can inherit from (see http://jknack.github.io/handlebars.java/reuse.html)
 * A CSS file with some basic styling
 * An ideas page that allows users to submit course ideas
-* Additional information can be stored and retrieved on a request. Fill in the following code snippet so that name is stored on the request using req.attribute
+* Additional information can be stored and retrieved on a request using req.attribute
