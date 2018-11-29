@@ -17,3 +17,6 @@ Use the HandleBars Template to build a simple website with:
 * A Base.hbs that index and sign-in can inherit from (see http://jknack.github.io/handlebars.java/reuse.html)
 * A CSS file with some basic styling
 * An ideas page that allows users to submit course ideas
+* In order to have a function run on every request prior to any other handler you should you use the before filter.
+* Additional information can be stored and retrieved on a request using req.attribute
+* The slugify dependency is used to add meaning to URL's that would otherwise be accessed through an ID (https://github.com/slugify/slugify)
