@@ -54,7 +54,7 @@ https://github.com/perwendel/spark-template-engines/tree/master/spark-template-h
 
 ### Slugify
 
-* The slugify dependency used to generate a meaningful name for URL's that would otherwise be accessed through an ID (https://github.com/slugify/slugify)
+* The slugify dependency used to generate a meaningful name for individual page URL's that would otherwise be accessed through an ID (https://github.com/slugify/slugify)
 
 ## Dependencies 
 See the pom.xml file
